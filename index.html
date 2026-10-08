@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>运动记录</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>🏃 运动记录</h1>
+    <p class="subtitle">记录每一次挥汗如雨</p>
+  </header>
+
+  <main class="container">
+    <!-- 统计面板 -->
+    <section class="card" aria-label="数据统计">
+      <h2>数据统计</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-value" id="stat-count">0</span>
+          <span class="stat-label">总运动次数</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-duration">0</span>
+          <span class="stat-label">总时长（分钟）</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-distance">0</span>
+          <span class="stat-label">总距离（km）</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-week">0</span>
+          <span class="stat-label">本周运动次数</span>
+        </div>
+      </div>
+      <h3 class="sub-title">按类型统计</h3>
+      <div id="type-bars" class="type-bars" aria-label="按运动类型统计"></div>
+    </section>
+
+    <!-- 添加记录 -->
+    <section class="card" aria-label="添加记录">
+      <h2>添加记录</h2>
+      <form id="record-form" novalidate>
+        <div class="form-row">
+          <label>运动类型
+            <select id="f-type" required>
+              <option value="跑步">🏃 跑步</option>
+              <option value="骑行">🚴 骑行</option>
+              <option value="游泳">🏊 游泳</option>
+              <option value="健身">🏋️ 健身</option>
+              <option value="瑜伽">🧘 瑜伽</option>
+              <option value="步行">🚶 步行</option>
+              <option value="其他">✨ 其他</option>
+            </select>
+          </label>
+          <label>日期
+            <input type="date" id="f-date" required>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>时长（分钟）*
+            <input type="number" id="f-duration" min="1" step="1" required placeholder="例如 30">
+          </label>
+          <label>距离（km，可选）
+            <input type="number" id="f-distance" min="0" step="0.1" placeholder="例如 5.2">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>卡路里（kcal，可选）
+            <input type="number" id="f-calories" min="0" step="1" placeholder="例如 300">
+          </label>
+          <label>备注（可选）
+            <input type="text" id="f-note" maxlength="100" placeholder="一句话小结">
+          </label>
+        </div>
+        <button type="submit" class="btn-primary">保存记录</button>
+      </form>
+    </section>
+
+    <!-- 记录列表 -->
+    <section class="card" aria-label="运动记录列表">
+      <h2>运动记录 <span class="count-badge" id="list-count"></span></h2>
+      <ul id="record-list" class="record-list"></ul>
+      <p class="empty-tip" id="empty-tip" hidden>还没有记录，快去运动然后记下来吧！💪</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">数据保存在本机浏览器（localStorage）中</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
